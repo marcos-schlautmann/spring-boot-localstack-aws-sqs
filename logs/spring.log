@@ -1,0 +1,43 @@
+2023-10-15 23:27:48.070  INFO 23012 --- [main] b.c.PropertySourceBootstrapConfiguration : Located property source: [BootstrapPropertySource {name='bootstrapProperties-/config/spring-boot-localstack_default/'}, BootstrapPropertySource {name='bootstrapProperties-/config/spring-boot-localstack/'}, BootstrapPropertySource {name='bootstrapProperties-/config/application_default/'}, BootstrapPropertySource {name='bootstrapProperties-/config/application/'}]
+2023-10-15 23:27:48.098  INFO 23012 --- [main] i.a.c.p.AwsParamStorePropertySources     : Loading property from AWS Parameter Store with name: /config/spring-boot-localstack_default/, optional: false
+2023-10-15 23:27:48.098  INFO 23012 --- [main] i.a.c.p.AwsParamStorePropertySources     : Loading property from AWS Parameter Store with name: /config/spring-boot-localstack/, optional: false
+2023-10-15 23:27:48.098  INFO 23012 --- [main] i.a.c.p.AwsParamStorePropertySources     : Loading property from AWS Parameter Store with name: /config/application_default/, optional: false
+2023-10-15 23:27:48.098  INFO 23012 --- [main] i.a.c.p.AwsParamStorePropertySources     : Loading property from AWS Parameter Store with name: /config/application/, optional: false
+2023-10-15 23:27:48.099  INFO 23012 --- [main] i.a.c.s.AwsSecretsManagerPropertySources : Loading secrets from AWS Secret Manager secret with name: /secret/spring-boot-localstack_default, optional: false
+2023-10-15 23:27:48.134 ERROR 23012 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+io.awspring.cloud.secretsmanager.AwsSecretsManagerPropertySources$AwsSecretsManagerPropertySourceNotFoundException: com.amazonaws.services.secretsmanager.model.ResourceNotFoundException: Secrets Manager can't find the specified secret. (Service: AWSSecretsManager; Status Code: 400; Error Code: ResourceNotFoundException; Request ID: d75e11b8-fbfe-402a-a14a-a77c00b68a18; Proxy: null)
+	at io.awspring.cloud.secretsmanager.AwsSecretsManagerPropertySources.createPropertySource(AwsSecretsManagerPropertySources.java:93) ~[spring-cloud-aws-secrets-manager-config-2.4.2.jar:2.4.2]
+	at io.awspring.cloud.secretsmanager.AwsSecretsManagerPropertySourceLocator.locate(AwsSecretsManagerPropertySourceLocator.java:94) ~[spring-cloud-aws-secrets-manager-config-2.4.2.jar:2.4.2]
+	at org.springframework.cloud.bootstrap.config.PropertySourceLocator.locateCollection(PropertySourceLocator.java:51) ~[spring-cloud-context-3.1.7.jar:3.1.7]
+	at org.springframework.cloud.bootstrap.config.PropertySourceLocator.locateCollection(PropertySourceLocator.java:47) ~[spring-cloud-context-3.1.7.jar:3.1.7]
+	at org.springframework.cloud.bootstrap.config.PropertySourceBootstrapConfiguration.doInitialize(PropertySourceBootstrapConfiguration.java:120) ~[spring-cloud-context-3.1.7.jar:3.1.7]
+	at org.springframework.cloud.bootstrap.config.PropertySourceBootstrapConfiguration.initialize(PropertySourceBootstrapConfiguration.java:110) ~[spring-cloud-context-3.1.7.jar:3.1.7]
+	at org.springframework.boot.SpringApplication.applyInitializers(SpringApplication.java:604) ~[spring-boot-2.7.16.jar:2.7.16]
+	at org.springframework.boot.SpringApplication.prepareContext(SpringApplication.java:373) ~[spring-boot-2.7.16.jar:2.7.16]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:306) ~[spring-boot-2.7.16.jar:2.7.16]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303) ~[spring-boot-2.7.16.jar:2.7.16]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292) ~[spring-boot-2.7.16.jar:2.7.16]
+	at br.com.marcosbonfim.SpringBootLocalstackApplication.main(SpringBootLocalstackApplication.java:10) ~[classes/:na]
+Caused by: com.amazonaws.services.secretsmanager.model.ResourceNotFoundException: Secrets Manager can't find the specified secret. (Service: AWSSecretsManager; Status Code: 400; Error Code: ResourceNotFoundException; Request ID: d75e11b8-fbfe-402a-a14a-a77c00b68a18; Proxy: null)
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.handleErrorResponse(AmazonHttpClient.java:1879) ~[aws-java-sdk-core-1.12.266.jar:na]
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.handleServiceErrorResponse(AmazonHttpClient.java:1418) ~[aws-java-sdk-core-1.12.266.jar:na]
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeOneRequest(AmazonHttpClient.java:1387) ~[aws-java-sdk-core-1.12.266.jar:na]
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeHelper(AmazonHttpClient.java:1157) ~[aws-java-sdk-core-1.12.266.jar:na]
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.doExecute(AmazonHttpClient.java:814) ~[aws-java-sdk-core-1.12.266.jar:na]
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeWithTimer(AmazonHttpClient.java:781) ~[aws-java-sdk-core-1.12.266.jar:na]
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.execute(AmazonHttpClient.java:755) ~[aws-java-sdk-core-1.12.266.jar:na]
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.access$500(AmazonHttpClient.java:715) ~[aws-java-sdk-core-1.12.266.jar:na]
+	at com.amazonaws.http.AmazonHttpClient$RequestExecutionBuilderImpl.execute(AmazonHttpClient.java:697) ~[aws-java-sdk-core-1.12.266.jar:na]
+	at com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:561) ~[aws-java-sdk-core-1.12.266.jar:na]
+	at com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:541) ~[aws-java-sdk-core-1.12.266.jar:na]
+	at com.amazonaws.services.secretsmanager.AWSSecretsManagerClient.doInvoke(AWSSecretsManagerClient.java:2496) ~[aws-java-sdk-secretsmanager-1.12.266.jar:na]
+	at com.amazonaws.services.secretsmanager.AWSSecretsManagerClient.invoke(AWSSecretsManagerClient.java:2463) ~[aws-java-sdk-secretsmanager-1.12.266.jar:na]
+	at com.amazonaws.services.secretsmanager.AWSSecretsManagerClient.invoke(AWSSecretsManagerClient.java:2452) ~[aws-java-sdk-secretsmanager-1.12.266.jar:na]
+	at com.amazonaws.services.secretsmanager.AWSSecretsManagerClient.executeGetSecretValue(AWSSecretsManagerClient.java:967) ~[aws-java-sdk-secretsmanager-1.12.266.jar:na]
+	at com.amazonaws.services.secretsmanager.AWSSecretsManagerClient.getSecretValue(AWSSecretsManagerClient.java:936) ~[aws-java-sdk-secretsmanager-1.12.266.jar:na]
+	at io.awspring.cloud.secretsmanager.AwsSecretsManagerPropertySource.readSecretValue(AwsSecretsManagerPropertySource.java:80) ~[spring-cloud-aws-secrets-manager-config-2.4.2.jar:2.4.2]
+	at io.awspring.cloud.secretsmanager.AwsSecretsManagerPropertySource.init(AwsSecretsManagerPropertySource.java:64) ~[spring-cloud-aws-secrets-manager-config-2.4.2.jar:2.4.2]
+	at io.awspring.cloud.secretsmanager.AwsSecretsManagerPropertySources.createPropertySource(AwsSecretsManagerPropertySources.java:87) ~[spring-cloud-aws-secrets-manager-config-2.4.2.jar:2.4.2]
+	... 11 common frames omitted
+
